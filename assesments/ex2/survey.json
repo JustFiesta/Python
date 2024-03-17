@@ -1,0 +1,44 @@
+{
+    "Zadowolenie_z_Pracy": {
+        "Ogolne_zadowolenie": {
+            "Description": "Jak ogólnie oceniasz swoje zadowolenie z pracy?",
+            "Answers": [
+                "Bardzo zadowolony(a)",
+                "Zadowolony(a)",
+                "Neutralny(a)",
+                "Niezadowolony(a)",
+                "Bardzo niezadowolony(a)"
+            ]
+        },
+        "Warunki_pracy": {
+            "Description": "Jak oceniasz warunki pracy w Twojej firmie?",
+            "Answers": [
+                "Bardzo dobre",
+                "Dobre",
+                "Średnie",
+                "Złe",
+                "Bardzo złe"
+            ]
+        },
+        "Atmosfera_w_pracy": {
+            "Description": "Jak oceniasz atmosferę w Twoim miejscu pracy?",
+            "Answers": [
+                "Bardzo przyjazna i wspierająca",
+                "Przyjazna",
+                "Neutralna",
+                "Napięta",
+                "Bardzo napięta"
+            ]
+        },
+        "Rozwoj_kariery": {
+            "Description": "Czy czujesz, że masz możliwości rozwoju kariery w swojej firmie?",
+            "Answers": [
+                "Tak, zdecydowanie",
+                "Tak, częściowo",
+                "Nie wiem",
+                "Nie, raczej nie",
+                "Nie, w ogóle"
+            ]
+        }
+    }
+}
