@@ -40,20 +40,19 @@ def post_survey(api_token, survey_json_file):
         'Accept': "application/json",
         'Authorization': f"Bearer {api_token}"
     }
-
+    
     # send survey json string
     conn.request("POST", surveys_url, survey_json_string, headers_POST)
     response = conn.getresponse()
     data = response.read() # check whole response msg
 
-    if response.status == 200:
+    if response.status == 201:
         print("Survey posted!!!")
     else:
         print("Failed to post survey. Status code: ", response.status)
         print("Response data: ")
         print(data)
         raise ConnectionError
-
 
 
 """
@@ -87,8 +86,10 @@ def get_survey_id(api_token):
     return survey_list[-1]
 
 
-
-def send_survey_invitations(api_token, survey_id, email_list_file):
+"""
+Create collector and send survey invitations through it
+"""
+def post_survey_invitations(api_token, survey_id, email_list_file):
 
     # prepare connection
     conn = craete_connection()
@@ -106,15 +107,23 @@ def send_survey_invitations(api_token, survey_id, email_list_file):
     # create new collector for invitations
     collector_data = {
         "type": "email",
-        "name": "Email Collector"
-    }
+        "name": "Work satisfaction",
+        "display_survey_results": True,
+        "anonymous_type": "fully_anonymous",
+        "sender_email": "mbocak@griddynamics.com",
+        "width": 400,
+        "height": 500,
+        "border_color": "#FF4880",
+        "is_branding_enabled": True,
+        "respondent_authentication": False,
+        }
 
     # create collector
-    conn.request("POST", invitations_url, headers_POST, json.dumps(collector_data))
+    conn.request("POST", invitations_url, json.dumps(collector_data).encode('utf-8'), headers_POST)
     response = conn.getresponse()
     data = response.read()
 
-    if response.status== 200:
+    if response.status == 200:
         # get collector id from server response
         collector_id = response.json()["id"]
         print("Collector created successfully!")
@@ -141,7 +150,7 @@ def send_survey_invitations(api_token, survey_id, email_list_file):
         }
     
     # send invitations
-    conn.request("POST", invitations_url + f'/{collector_id}/messages', headers_POST, json.dumps(invitation_data))
+    conn.request("POST", invitations_url + f'/{collector_id}/messages', json.dumps(invitation_data), headers_POST)
     
     # check response status
     if response.status == 200:

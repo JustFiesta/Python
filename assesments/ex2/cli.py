@@ -43,14 +43,14 @@ def main():
             email_list_file = str(args.mails)
 
         # try to send survey and if succeded send invitations
-        try:
-            api_communication.post_survey(api_token, survey_json_file)
-        except ConnectionError:
-            print("API connection error - survey not posted!")
-            sys.exit(1)
+        # try:
+        #     api_communication.post_survey(api_token, survey_json_file)
+        # except ConnectionError:
+        #     print("API connection error - survey not posted!")
+        #     sys.exit(1)
         
         try:
-            api_communication.send_survey_invitations(api_token, api_communication.survey_id, email_list_file)
+            api_communication.post_survey_invitations(api_token, api_communication.survey_id, email_list_file)
         except ConnectionError:
             print("API connection error - emails not sent!")
             sys.exit(1)

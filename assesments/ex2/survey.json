@@ -1,44 +1,154 @@
 {
-    "Zadowolenie_z_Pracy": {
-        "Ogolne_zadowolenie": {
-            "Description": "Jak ogólnie oceniasz swoje zadowolenie z pracy?",
-            "Answers": [
-                "Bardzo zadowolony(a)",
-                "Zadowolony(a)",
-                "Neutralny(a)",
-                "Niezadowolony(a)",
-                "Bardzo niezadowolony(a)"
-            ]
-        },
-        "Warunki_pracy": {
-            "Description": "Jak oceniasz warunki pracy w Twojej firmie?",
-            "Answers": [
-                "Bardzo dobre",
-                "Dobre",
-                "Średnie",
-                "Złe",
-                "Bardzo złe"
-            ]
-        },
-        "Atmosfera_w_pracy": {
-            "Description": "Jak oceniasz atmosferę w Twoim miejscu pracy?",
-            "Answers": [
-                "Bardzo przyjazna i wspierająca",
-                "Przyjazna",
-                "Neutralna",
-                "Napięta",
-                "Bardzo napięta"
-            ]
-        },
-        "Rozwoj_kariery": {
-            "Description": "Czy czujesz, że masz możliwości rozwoju kariery w swojej firmie?",
-            "Answers": [
-                "Tak, zdecydowanie",
-                "Tak, częściowo",
-                "Nie wiem",
-                "Nie, raczej nie",
-                "Nie, w ogóle"
-            ]
-        }
-    }
-}
+    "title": "Ankieta nt. zadowolenia z pracy",
+    "from_template_id": "",
+    "from_survey_id": "",
+    "from_team_template_id": "",
+    "nickname": "Ankieta o pracy",
+    "language": "pl",
+    "buttons_text": {
+      "next_button": "Dalej",
+      "prev_button": "Wstecz",
+      "exit_button": "Wyjdź",
+      "done_button": "Gotowe"
+    },
+    "custom_variables": {},
+    "footer": true,
+    "folder_id": "",
+    "theme_id": 1506280,
+    "quiz_options": {
+      "is_quiz_mode": false,
+      "default_question_feedback": {
+        "correct_text": "",
+        "incorrect_text": "",
+        "partial_text": ""
+      },
+      "show_results_type": "",
+      "feedback": {
+        "ranges_type": "",
+        "ranges": []
+      }
+    },
+    "pages": [
+      {
+        "questions": [
+          {
+            "headings": [
+              {
+                "heading": "Proszę ocenić swoje zadowolenie z pracy"
+              }
+            ],
+            "position": 1,
+            "family": "single_choice",
+            "subtype": "vertical",
+            "answers": {
+              "choices": [
+                {
+                  "text": "Bardzo zadowolony(a)"
+                },
+                {
+                  "text": "Zadowolony(a)"
+                },
+                {
+                  "text": "Neutralny(a)"
+                },
+                {
+                  "text": "Niezadowolony(a)"
+                },
+                {
+                  "text": "Bardzo niezadowolony(a)"
+                }
+              ]
+            }
+          },
+          {
+            "headings": [
+              {
+                "heading": "Jak oceniasz warunki pracy w Twojej firmie?"
+              }
+            ],
+            "position": 2,
+            "family": "single_choice",
+            "subtype": "vertical",
+            "answers": {
+              "choices": [
+                {
+                  "text": "Bardzo dobre"
+                },
+                {
+                  "text": "Dobre"
+                },
+                {
+                  "text": "Średnie"
+                },
+                {
+                  "text": "Złe"
+                },
+                {
+                  "text": "Bardzo złe"
+                }
+              ]
+            }
+          },
+          {
+            "headings": [
+              {
+                "heading": "Jak oceniasz atmosferę w Twoim miejscu pracy?"
+              }
+            ],
+            "position": 3,
+            "family": "single_choice",
+            "subtype": "vertical",
+            "answers": {
+              "choices": [
+                {
+                  "text": "Bardzo przyjazna i wspierająca"
+                },
+                {
+                  "text": "Przyjazna"
+                },
+                {
+                  "text": "Neutralna"
+                },
+                {
+                  "text": "Napięta"
+                },
+                {
+                  "text": "Bardzo napięta"
+                }
+              ]
+            }
+          },
+          {
+            "headings": [
+              {
+                "heading": "Czy czujesz, że masz możliwości rozwoju kariery w swojej firmie?"
+              }
+            ],
+            "position": 4,
+            "family": "single_choice",
+            "subtype": "vertical",
+            "answers": {
+              "choices": [
+                {
+                  "text": "Tak, zdecydowanie"
+                },
+                {
+                  "text": "Tak, częściowo"
+                },
+                {
+                  "text": "Nie wiem"
+                },
+                {
+                  "text": "Nie, raczej nie"
+                },
+                {
+                  "text": "Nie, w ogóle"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+  
