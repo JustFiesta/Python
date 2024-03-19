@@ -3,6 +3,8 @@
 import argparse
 import sys
 import os
+from dotenv import load_dotenv
+
 import api_communication
 
 # create cli parser with arguments
@@ -31,8 +33,9 @@ def main():
         parser.print_help()
         sys.exit(0)
     else:
-        # api token fomr evnrioment variable
+        # api token from evnrioment variable
         try:
+            load_dotenv()
             api_token = os.environ['SURVEY_MONKEY_API']
         except KeyError:
             print("Please first set enviroment variable with API token to survey monkey")
