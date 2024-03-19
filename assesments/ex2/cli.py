@@ -20,12 +20,7 @@ def create_parser():
 # run function
 def main():
 
-    try:
-        parser = create_parser()
-    except TypeError:
-        print("JSON survey file and email list file ARE REQUIRED!")
-        create_parser().print_help()
-    
+    parser = create_parser()
     args = parser.parse_args()
 
     # check if any arguments were passed - if not display help
