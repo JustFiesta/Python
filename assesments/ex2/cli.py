@@ -28,13 +28,6 @@ def main():
         parser.print_help()
         sys.exit(0)
     else:
-        # api token from evnrioment variable
-        try:
-            load_dotenv()
-            api_token = os.environ['SURVEY_MONKEY_API']
-        except KeyError:
-            print("Please first set enviroment variable with API token to survey monkey")
-            sys.exit(1)
 
         # both are required by parser (as positionals on default), so no need to exit if they are not present
         if args.survey:
@@ -42,17 +35,16 @@ def main():
         if args.mails:
             email_list_file = str(args.mails)
 
-        # try to send survey and if succeded send invitations
         try:
+             # try to load api token from evnrioment variable
+            load_dotenv()
+            api_token = os.environ['SURVEY_MONKEY_API']
+
             api_communication.post_survey(api_token, survey_json_file)
-        except ConnectionError:
-            print("API connection error - survey not posted!")
-            sys.exit(1)
-        
-        try:
             api_communication.post_survey_invitations(api_token, api_communication.survey_id, email_list_file)
-        except ConnectionError:
-            print("API connection error - emails not sent!")
+        
+        except api_communication.APIConnectionException as e:
+            print(e)
             sys.exit(1)
 
 

@@ -21,6 +21,28 @@ def craete_connection():
 
 
 """
+Custom exceptions
+"""
+class APIConnectionException(Exception):
+    """"Universal exception raised for any API errors.
+    
+    Attributes:
+    method -- method with caused the error (eg. POST, GET, etc.)
+    target -- survey monkey target (eg. survey, collector, invites, etc.)
+    response_status -- response status code
+    response_data -- whole response - explanation of the error
+    """
+
+    def __init__(self, method, target, response_status, response_data):
+        self.method = method
+        self.target = target
+        self.response_status = response_status
+        self.response_data = response_data
+        self.message = f"Failed to {method} {target}: {response_status}\nWhole response data: {response_data}"
+        super().__init__(self.message)
+
+
+"""
 Post survey from json file
 """
 def post_survey(api_token, survey_json_file):
@@ -49,10 +71,7 @@ def post_survey(api_token, survey_json_file):
     if response.status == 201:
         print("Survey posted!!!")
     else:
-        print("Failed to post survey. Status code: ", response.status)
-        print("Response data: ")
-        print(data)
-        raise ConnectionError
+        raise APIConnectionException("POST", "survey", response.status, data)
 
 
 """
@@ -71,16 +90,13 @@ def get_survey_id(api_token):
 
     # get survey list
     survey_list = conn.request("GET", surveys_url, headers=headers_GET)
-    response = conn.getresponse
+    response = conn.getresponse()
     data = response.read() # check whole response msg
 
     if response.status == 200:
         print("Got survey list!!!")
     else:
-        print("Failed to get survey ID. Status code: ", response.status)
-        print("Response data:")
-        print(data)
-        raise ConnectionError
+        raise APIConnectionException("GET", "survey list", response.status, data)
     
     # return last createad survey id
     return survey_list[-1]
@@ -128,10 +144,7 @@ def post_survey_invitations(api_token, survey_id, email_list_file):
         collector_id = response.json()["id"]
         print("Collector created successfully!")
     else:
-        print("Failed to create collector. Status code:", response.status)
-        print("Response data:")
-        print(data)
-        raise ConnectionError
+        raise APIConnectionException("POST", "collector", response.status, data)
 
 
     # read email list for invites
@@ -156,7 +169,4 @@ def post_survey_invitations(api_token, survey_id, email_list_file):
     if response.status == 200:
         print(f"Invitation sent successfully to {email.strip()}")
     else:
-        print(f"Failed to send invitation to {email.strip()}. Status code:", response.status)
-        print("Response data:")
-        print(data)
-        raise ConnectionError
+        raise APIConnectionException("POST", "invitations", response.status, data)
