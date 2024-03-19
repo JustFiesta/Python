@@ -2,6 +2,7 @@
 
 import argparse
 import sys
+import os
 import api_communication
 
 # create cli parser with arguments
@@ -30,11 +31,12 @@ def main():
         parser.print_help()
         sys.exit(0)
     else:
-        # hardcoded api token
-        api_token = 'Q-O3EUOJIMKUmVzhRvJXbGNpv.5KkmPHYWc7mvAv0hsMs2nhNbFWQrppLNSDc9AuDvoUVNVGvtKrH1vcYhbweW8WoA0hceOHUs2GDSGMWAiBlC44KqYGIyliqvgyWZ4u'
-
-        # hardcoded survey id from surveymonkey site
-        #survey_id = 'ID'
+        # api token fomr evnrioment variable
+        try:
+            api_token = os.environ['SURVEY_MONKEY_API']
+        except KeyError:
+            print("Please first set enviroment variable with API token to survey monkey")
+            sys.exit(1)
 
         # both are required by parser (as positionals on default), so no need to exit if they are not present
         if args.survey:
