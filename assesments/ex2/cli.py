@@ -32,9 +32,11 @@ def create_parser():
 
     return parser
 
+
 # run function
 def main():
 
+    # check if any arguments were passed - if not display help
     try:
         parser = create_parser()
         args = parser.parse_args()
@@ -43,11 +45,6 @@ def main():
 
         parser.print_help()
         sys.exit(0)
-    # check if any arguments were passed - if not display help
-    # if all(value is None for value in vars(args).values()):
-    #     parser.print_help()
-    #     sys.exit(0)
-    # else:
 
     # both are required by parser (as positionals on default), so no need to exit if they are not present
     if args.survey:
@@ -56,7 +53,7 @@ def main():
         email_list_file = str(args.mails)
 
     try:
-            # try to load api token from evnrioment variable
+        # try to load api token from evnrioment variable
         load_dotenv()
         api_token = os.environ['SURVEY_MONKEY_API']
 
