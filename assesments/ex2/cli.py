@@ -10,9 +10,9 @@ import api_communication
 
 class TooFewArgumentsException(Exception):
     """Exception for too few arguments passed"""
-    def __init__(self, message):
+    def __init__(self, *args):
         self.message = "Please specify required file parameters: survey mails"
-        super().__init__(self.message)
+        super().__init__(*args, self.message)
 
 """
 Custom parser subclass, throwing ArgumentParserError on too few arguments
